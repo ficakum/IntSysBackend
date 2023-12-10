@@ -1,6 +1,6 @@
 export enum ModelConstants {
   USER = 'User',
-  TRACK_UNIT = 'TrackUnit',
+  TRACK = 'Track',
   GROUP = 'Group',
 }
 
@@ -21,13 +21,15 @@ export enum WinstonColors {
 }
 
 export enum ValidatorConstants {
-  GROUP_NAME_MIN = 3,
-  GROUP_NAME_MAX = 10,
+  GROUP_NAME_MIN = 2,
+  GROUP_NAME_MAX = 12,
   GROUP_GREATER = -1,
   GROUP_MAX_MEMBERS = 20,
   USER_NAME_MIN = 2,
   USER_NAME_MAX = 30,
+  TRACK_DURATION_MIN = 1,
 }
+
 export enum ValidatorMessages {
   BASE = 'should be a type of',
   EMPTY = 'cannot be empty field',
@@ -63,10 +65,10 @@ export enum ValidatorTypes {
 
 export enum EventType {
   PLAYLIST = 'PLAYLIST',
-  CURRENT_TRACK_UNIT = 'CURRENT_TRACK_UNIT',
+  CURRENT_TRACK = 'CURRENT_TRACK',
 }
 
-export enum TrackUnitState {
+export enum TrackState {
   SCHEDULED = 'SCHEDULED',
   FINISHED = 'FINISHED',
   PLAYING = 'PLAYING',
