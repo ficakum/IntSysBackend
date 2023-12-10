@@ -1,8 +1,7 @@
 export enum ModelConstants {
   USER = 'User',
   TRACK_UNIT = 'TrackUnit',
-  ROOM = 'Room',
-  VOTE = 'Vote',
+  GROUP = 'Group',
 }
 
 export const WinstonLevels = {

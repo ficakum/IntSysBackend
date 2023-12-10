@@ -21,7 +21,6 @@ const UserUpdateSchemaValidator: Joi.ObjectSchema<User> = Joi.object<User>({
           [ValidatorKeys.EMPTY]: ValidatorMessages.EMPTY,
           [ValidatorKeys.MIN]: `${ValidatorMessages.MIN} ${ValidatorConstants.USER_NAME_MIN}`,
           [ValidatorKeys.MAX]: `${ValidatorMessages.MAX} ${ValidatorConstants.USER_NAME_MAX}`,
-          [ValidatorKeys.REQUIRED]: ValidatorMessages.REQUIRED,
         },
         'userName',
       ),

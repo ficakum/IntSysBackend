@@ -9,8 +9,6 @@ type IConfig = {
   MONGODB_NAME: string;
   PORT: number;
   MAX_MEMBERS_DEFAULT: number;
-  VOTES_NUMBER_DEFAULT: number;
-  VOTES_RESET_PERIOD: number;
   PLAYLIST_RATE_LIMIT: number;
   cron: {
     CRON_TRACK_UNIT: string;
@@ -19,28 +17,18 @@ type IConfig = {
   JWT_EXPIRATION_TIME: number;
   JWT_REFRESH_TOKEN_EXPIRATION: number;
   PASSWORD_HASH_ROUNDS: number;
-  GOOGLE_CLIENT_ID: string;
-  GOOGLE_CLIENT_SECRET: string;
-  GOOGLE_CALLBACK_URL: string;
-  API_URL: string;
 };
 
 if (
   !process.env.MONGODB_CONNECTION ||
   !process.env.MONGODB_NAME ||
   !process.env.MAX_MEMBERS_DEFAULT ||
-  !process.env.VOTES_NUMBER_DEFAULT ||
-  !process.env.VOTES_RESET_PERIOD ||
   !process.env.PLAYLIST_RATE_LIMIT ||
   !process.env.CRON_TRACK_UNIT ||
   !process.env.JWT_SECRET ||
   !process.env.JWT_EXPIRATION_TIME ||
   !process.env.JWT_REFRESH_TOKEN_EXPIRATION ||
-  !process.env.PASSWORD_HASH_ROUNDS ||
-  !process.env.GOOGLE_CLIENT_ID ||
-  !process.env.GOOGLE_CLIENT_SECRET ||
-  !process.env.GOOGLE_CALLBACK_URL ||
-  !process.env.API_URL
+  !process.env.PASSWORD_HASH_ROUNDS
 ) {
   Logger.error('Environment variables missing');
 
@@ -52,8 +40,6 @@ const config: IConfig = {
   MONGODB_NAME: process.env.MONGODB_NAME,
   PORT: Number(process.env.PORT) || 3000,
   MAX_MEMBERS_DEFAULT: Number(process.env.MAX_MEMBERS_DEFAULT),
-  VOTES_NUMBER_DEFAULT: Number(process.env.VOTES_NUMBER_DEFAULT),
-  VOTES_RESET_PERIOD: Number(process.env.VOTES_RESET_PERIOD),
   PLAYLIST_RATE_LIMIT: Number(process.env.PLAYLIST_RATE_LIMIT),
   cron: {
     CRON_TRACK_UNIT: process.env.CRON_TRACK_UNIT,
@@ -64,10 +50,6 @@ const config: IConfig = {
     process.env.JWT_REFRESH_TOKEN_EXPIRATION,
   ),
   PASSWORD_HASH_ROUNDS: Number(process.env.PASSWORD_HASH_ROUNDS),
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-  GOOGLE_CALLBACK_URL: process.env.GOOGLE_CALLBACK_URL,
-  API_URL: process.env.API_URL,
 };
 
 export default config;
