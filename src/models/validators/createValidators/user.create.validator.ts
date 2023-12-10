@@ -24,22 +24,7 @@ const UserCreateSchemaValidator: Joi.ObjectSchema<User> = Joi.object<User>({
           [ValidatorKeys.MAX]: `${ValidatorMessages.MAX} ${ValidatorConstants.USER_NAME_MAX}`,
           [ValidatorKeys.REQUIRED]: ValidatorMessages.REQUIRED,
         },
-        'roomName',
-      ),
-    ),
-  groupName: Joi.string()
-    .min(ValidatorConstants.USER_NAME_MIN)
-    .max(ValidatorConstants.USER_NAME_MAX)
-    .messages(
-      messagesConstructor(
-        ValidatorTypes.STRING,
-        {
-          [ValidatorKeys.BASE]: `${ValidatorMessages.BASE} ${ValidatorTypes.STRING}`,
-          [ValidatorKeys.EMPTY]: ValidatorMessages.EMPTY,
-          [ValidatorKeys.MIN]: `${ValidatorMessages.MIN} ${ValidatorConstants.USER_NAME_MIN}`,
-          [ValidatorKeys.MAX]: `${ValidatorMessages.MAX} ${ValidatorConstants.USER_NAME_MAX}`,
-        },
-        'roomName',
+        'userName',
       ),
     ),
   // group: Joi.optional(),

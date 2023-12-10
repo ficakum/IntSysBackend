@@ -14,7 +14,6 @@ import { hashPassword } from '../utils/helper.methods';
 export type User = {
   userName: string;
   email: string;
-  groupName: string;
   password: string;
   // group: Group['_id'];
 } & Document;
@@ -23,7 +22,6 @@ const UserSchema: Schema<User> = new Schema<User>(
   {
     userName: { type: String, unique: true },
     email: { type: String, required: true, unique: true },
-    groupName: String,
     password: { type: String, select: false },
     // room: { type: Types.ObjectId, ref: ModelConstants.ROOM },
   },
