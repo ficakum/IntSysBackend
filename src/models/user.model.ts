@@ -3,19 +3,19 @@ import mongoose, {
   Document,
   Model,
   Schema,
-  // Types,
+  Types,
 } from 'mongoose';
 
 import { ModelConstants } from '../constants/constant';
 import { hashPassword } from '../utils/helper.methods';
 
-// import { Group } from './group.model';
+import { Group } from './group.model';
 
 export type User = {
   userName: string;
   email: string;
   password: string;
-  // group: Group['_id'];
+  group: Group['_id'];
 } & Document;
 
 const UserSchema: Schema<User> = new Schema<User>(
@@ -23,7 +23,7 @@ const UserSchema: Schema<User> = new Schema<User>(
     userName: { type: String, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, select: false },
-    // room: { type: Types.ObjectId, ref: ModelConstants.ROOM },
+    group: { type: Types.ObjectId, ref: ModelConstants.GROUP },
   },
   {
     timestamps: true,

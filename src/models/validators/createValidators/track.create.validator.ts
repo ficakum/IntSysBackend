@@ -2,7 +2,6 @@ import Joi from 'joi';
 
 import { Track } from '../../track.model';
 import {
-  ValidatorConstants,
   ValidatorKeys,
   ValidatorMessages,
   ValidatorTypes,
@@ -23,7 +22,7 @@ const TrackCreateSchemaValidator: Joi.ObjectSchema<Track> = Joi.object<Track>({
         'name',
       ),
     ),
-  // group: Joi.optional(),
+  group: Joi.optional(),
   author: Joi.string()
     .required()
     .messages(
