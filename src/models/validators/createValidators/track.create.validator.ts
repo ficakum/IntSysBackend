@@ -36,6 +36,32 @@ const TrackCreateSchemaValidator: Joi.ObjectSchema<Track> = Joi.object<Track>({
         'author',
       ),
     ),
+  genre: Joi.string()
+    .required()
+    .messages(
+      messagesConstructor(
+        ValidatorTypes.STRING,
+        {
+          [ValidatorKeys.BASE]: `${ValidatorMessages.BASE} ${ValidatorTypes.STRING}`,
+          [ValidatorKeys.EMPTY]: ValidatorMessages.EMPTY,
+          [ValidatorKeys.REQUIRED]: ValidatorMessages.REQUIRED,
+        },
+        'genre',
+      ),
+    ),
+  externalId: Joi.string()
+    .required()
+    .messages(
+      messagesConstructor(
+        ValidatorTypes.STRING,
+        {
+          [ValidatorKeys.BASE]: `${ValidatorMessages.BASE} ${ValidatorTypes.STRING}`,
+          [ValidatorKeys.EMPTY]: ValidatorMessages.EMPTY,
+          [ValidatorKeys.REQUIRED]: ValidatorMessages.REQUIRED,
+        },
+        'externalId',
+      ),
+    ),
 });
 
 export default TrackCreateSchemaValidator;
