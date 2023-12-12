@@ -22,7 +22,7 @@ const TrackCreateSchemaValidator: Joi.ObjectSchema<Track> = Joi.object<Track>({
         'name',
       ),
     ),
-  // group: Joi.optional(),
+  group: Joi.optional(),
   author: Joi.string()
     .required()
     .messages(

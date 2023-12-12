@@ -27,7 +27,7 @@ const UserCreateSchemaValidator: Joi.ObjectSchema<User> = Joi.object<User>({
         'userName',
       ),
     ),
-  // group: Joi.optional(),
+  group: Joi.optional(),
   password: Joi.optional(),
   email: Joi.string()
     .email()
