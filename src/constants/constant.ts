@@ -21,7 +21,7 @@ export enum WinstonColors {
 }
 
 export enum ValidatorConstants {
-  GROUP_NAME_MIN = 2,
+  GROUP_NAME_MIN = 3,
   GROUP_NAME_MAX = 12,
   GROUP_GREATER = -1,
   GROUP_MAX_MEMBERS = 20,
