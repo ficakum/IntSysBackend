@@ -42,7 +42,8 @@ class CronService {
 
   async updateTracksForEvents(page: number, limit: number): Promise<void> {
     const { items } = await groupService.getGroups(
-      new Map<string, unknown>([
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      new Map<string, any>([
         [
           'searchQuery',
           {

@@ -17,12 +17,14 @@ class TrackService {
   }
 
   async getTrackBySpecificProperties(
-    searchQuery: Record<string, unknown>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    searchQuery: Record<string, any>,
   ): Promise<Track> {
     return this.repository.getItemBySpecificProperties(searchQuery);
   }
 
-  async getTracks(query: Map<string, unknown>): Promise<ItemsPage<Track>> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async getTracks(query: Map<string, any>): Promise<ItemsPage<Track>> {
     return this.repository.getItems(query);
   }
 
@@ -49,7 +51,8 @@ class TrackService {
 
   async getPlaylist(group: string): Promise<Track[]> {
     const { items } = await this.getTracks(
-      new Map<string, unknown>([
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      new Map<string, any>([
         [
           'searchQuery',
           {

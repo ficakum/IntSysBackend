@@ -21,11 +21,13 @@ class GroupService {
     return this.repository.getItem(id);
   }
 
-  async getGroups(query: Map<string, unknown>): Promise<ItemsPage<Group>> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async getGroups(query: Map<string, any>): Promise<ItemsPage<Group>> {
     return this.repository.getItems(query);
   }
 
-  async getGroupCount(searchQuery: Record<string, unknown>): Promise<number> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async getGroupCount(searchQuery: Record<string, any>): Promise<number> {
     return this.repository.getItemCount(searchQuery);
   }
 
@@ -81,7 +83,8 @@ class GroupService {
   private async removeUsersFromGroup(groupId: string): Promise<void> {
     const users: User[] = (
       await userService.getUsers(
-        new Map<string, unknown>([
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        new Map<string, any>([
           ['searchQuery', { group: groupId }],
           ['$page', 1],
           ['$limit', 0],

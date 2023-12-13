@@ -58,7 +58,8 @@ export default class Repository<E extends Document> {
     return this.model.findOne(searchQuery).sort(property);
   }
 
-  async getItems(query: Map<string, unknown>): Promise<ItemsPage<E>> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async getItems(query: Map<string, any>): Promise<ItemsPage<E>> {
     const totalCount: number = await this.model.countDocuments(
       query.get('searchQuery') ?? '',
     );
