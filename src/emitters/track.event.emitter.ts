@@ -32,14 +32,7 @@ class TrackEventEmitter {
   }
 
   async emitNextTrack(group: string): Promise<void> {
-    let nextTrack: Track = (
-      await trackService.getTracks(
-        new Map<string, unknown>([
-          ['$sort', 'createdAt'],
-          ['search', { state: TrackState.SCHEDULED }],
-        ]),
-      )
-    ).items[0];
+    let nextTrack: Track = (await trackService.getPlaylist(group))[0];
     await groupService.updateGroup(group, {
       currentTrack: nextTrack ? nextTrack.id : null,
     });
