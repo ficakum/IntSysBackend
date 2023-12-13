@@ -5,7 +5,7 @@ export type ItemsPage<T> = {
   totalCount: number;
 };
 
-export type TrackUnitEvent = {
+export type TrackEvent = {
   id: string;
   name: string;
   timeOffset: number;

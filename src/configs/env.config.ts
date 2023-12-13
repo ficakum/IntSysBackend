@@ -11,7 +11,7 @@ type IConfig = {
   MAX_MEMBERS_DEFAULT: number;
   PLAYLIST_RATE_LIMIT: number;
   cron: {
-    CRON_TRACK_UNIT: string;
+    CRON_TRACK: string;
   };
   JWT_SECRET: string;
   JWT_EXPIRATION_TIME: number;
@@ -24,7 +24,7 @@ if (
   !process.env.MONGODB_NAME ||
   !process.env.MAX_MEMBERS_DEFAULT ||
   !process.env.PLAYLIST_RATE_LIMIT ||
-  !process.env.CRON_TRACK_UNIT ||
+  !process.env.CRON_TRACK ||
   !process.env.JWT_SECRET ||
   !process.env.JWT_EXPIRATION_TIME ||
   !process.env.JWT_REFRESH_TOKEN_EXPIRATION ||
@@ -42,7 +42,7 @@ const config: IConfig = {
   MAX_MEMBERS_DEFAULT: Number(process.env.MAX_MEMBERS_DEFAULT),
   PLAYLIST_RATE_LIMIT: Number(process.env.PLAYLIST_RATE_LIMIT),
   cron: {
-    CRON_TRACK_UNIT: process.env.CRON_TRACK_UNIT,
+    CRON_TRACK: process.env.CRON_TRACK,
   },
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRATION_TIME: Number(process.env.JWT_EXPIRATION_TIME),
