@@ -2,13 +2,10 @@ import mongoose, { Document, Model, Schema, Types } from 'mongoose';
 
 import { ModelConstants } from '../constants/constant';
 import { Group } from './group.model';
+import { TrackInformation } from './trackInformation.model';
 
 export type Track = {
-  name: string;
-  author: string;
-  genre: string;
-  externalId: string;
-  duration: number;
+  trackInformation: TrackInformation['_id'];
   startTime: Date;
   group: Group['_id'];
   state: string;
@@ -16,11 +13,10 @@ export type Track = {
 
 const TrackSchema: Schema<Track> = new Schema<Track>(
   {
-    name: { type: String, required: true },
-    author: { type: String, required: true },
-    genre: { type: String },
-    externalId: { type: String, unique: true },
-    duration: { type: Number, min: 1 },
+    trackInformation: {
+      type: Types.ObjectId,
+      ref: ModelConstants.TRACK_INFORMATION,
+    },
     startTime: { type: Date },
     state: { type: String },
     group: { type: Types.ObjectId, ref: ModelConstants.GROUP },
