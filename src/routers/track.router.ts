@@ -13,16 +13,35 @@ trackRouter.get(
   queryMiddleware,
   trackController.getTracks,
 );
-trackRouter.post('/', authenticationMiddleware, trackController.createTrack);
+trackRouter.post(
+  '/track',
+  authenticationMiddleware,
+  trackController.createTrack,
+);
+trackRouter.post(
+  '/trackinfo',
+  authenticationMiddleware,
+  trackController.createTrackInfo,
+);
 trackRouter.patch(
-  '/:id',
+  '/track/:id',
   authenticationMiddleware,
   trackController.updateTrack,
 );
+trackRouter.patch(
+  '/trackinfo/:id',
+  authenticationMiddleware,
+  trackController.updateTrackInfo,
+);
 trackRouter.delete(
-  '/:id',
+  '/track/:id',
   authenticationMiddleware,
   trackController.deleteTrack,
+);
+trackRouter.delete(
+  '/trackinfo/:id',
+  authenticationMiddleware,
+  trackController.deleteTrackInfo,
 );
 
 export default trackRouter;

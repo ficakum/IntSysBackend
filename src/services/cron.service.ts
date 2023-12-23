@@ -11,6 +11,8 @@ import Logger from '../utils/winston.logger';
 import groupService from './group.service';
 import trackService from './track.service';
 import { trackEventService } from './event.service';
+import { TrackInformation } from 'models/trackInformation.model';
+import trackInformationService from './trackInformation.service';
 
 class CronService {
   startCronSchedules(): ScheduledTask {
@@ -66,8 +68,12 @@ class CronService {
         const timeOffset: number = Math.round(
           (Date.now() - Number(currentTrack.startTime)) / 1000,
         );
+        const currentTrackInfo: TrackInformation =
+          await trackInformationService.getTrackInformation(
+            currentTrack.trackInformation,
+          );
 
-        if (timeOffset >= currentTrack.duration) {
+        if (timeOffset >= currentTrackInfo.duration) {
           await trackService.updateTrack(currentTrack.id, {
             state: TrackState.FINISHED,
           });
@@ -79,9 +85,9 @@ class CronService {
           trackEventService.emitEvent(
             {
               id: currentTrack.id,
-              name: currentTrack.name,
+              name: currentTrackInfo.name,
               timeOffset: timeOffset,
-              externalId: currentTrack.externalId,
+              externalId: currentTrackInfo.externalId,
             },
             group,
           );

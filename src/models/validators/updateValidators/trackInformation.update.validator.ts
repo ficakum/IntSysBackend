@@ -8,7 +8,7 @@ import {
 } from '../../../constants/constant';
 import { messagesConstructor } from '../messages.validator';
 
-const TrackUpdateSchemaValidator: Joi.ObjectSchema<TrackInformation> =
+const TrackInformationUpdateSchemaValidator: Joi.ObjectSchema<TrackInformation> =
   Joi.object<TrackInformation>({
     name: Joi.string().messages(
       messagesConstructor(
@@ -242,4 +242,4 @@ const TrackUpdateSchemaValidator: Joi.ObjectSchema<TrackInformation> =
     ),
   });
 
-export default TrackUpdateSchemaValidator;
+export default TrackInformationUpdateSchemaValidator;

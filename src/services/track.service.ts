@@ -69,6 +69,6 @@ class TrackService {
   }
 }
 
-const trackUnitsService: TrackService = new TrackService();
+const trackService: TrackService = new TrackService();
 
-export default trackUnitsService;
+export default trackService;

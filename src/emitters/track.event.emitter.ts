@@ -4,6 +4,8 @@ import groupService from '../services/group.service';
 import { Track } from '../models/track.model';
 import { Group } from '../models/group.model';
 import { TrackState } from '../constants/constant';
+import { TrackInformation } from 'models/trackInformation.model';
+import trackInformationService from 'services/trackInformation.service';
 
 class TrackEventEmitter {
   async emitFirstTrack(track: Track): Promise<void> {
@@ -18,13 +20,17 @@ class TrackEventEmitter {
         startTime: new Date(),
         state: TrackState.PLAYING,
       });
+      const trackInfo: TrackInformation =
+        await trackInformationService.getTrackInformation(
+          track.trackInformation,
+        );
 
       trackEventService.emitEvent(
         {
           id: track.id,
-          name: track.name,
+          name: trackInfo.name,
           timeOffset: Math.round((Date.now() - Number(track.startTime)) / 1000),
-          externalId: track.externalId,
+          externalId: trackInfo.externalId,
         },
         group.id,
       );
@@ -44,15 +50,18 @@ class TrackEventEmitter {
       startTime: new Date(),
       state: TrackState.PLAYING,
     });
+    const nextTrackInfo = await trackInformationService.getTrackInformation(
+      nextTrack.trackInformation,
+    );
 
     trackEventService.emitEvent(
       {
         id: nextTrack.id,
-        name: nextTrack.name,
+        name: nextTrackInfo.name,
         timeOffset: Math.round(
           (Date.now() - Number(nextTrack.startTime)) / 1000,
         ),
-        externalId: nextTrack.externalId,
+        externalId: nextTrackInfo.externalId,
       },
       group,
     );
