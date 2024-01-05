@@ -11,7 +11,7 @@ import Logger from '../utils/winston.logger';
 import groupService from './group.service';
 import trackService from './track.service';
 import { trackEventService } from './event.service';
-import { TrackInformation } from 'models/trackInformation.model';
+import { TrackInformation } from '../models/trackInformation.model';
 import trackInformationService from './trackInformation.service';
 
 class CronService {

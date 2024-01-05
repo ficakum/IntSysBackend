@@ -5,8 +5,6 @@ import { playlistEventService } from '../services/event.service';
 import trackService from '../services/track.service';
 import config from '../configs/env.config';
 import NotFoundException from '../exceptions/notFound.exception';
-import { Track } from '../models/track.model';
-import trackInformationService from 'services/trackInformation.service';
 
 class PlaylistEventEmitter {
   private playlistWithRateLimit: Map<string, Observable<PlaylistEvent>>;
@@ -47,17 +45,7 @@ class PlaylistEventEmitter {
 
   async emitPlaylist(room: string): Promise<void> {
     playlistEventService.addSubject(room);
-    const playlist: PlaylistEvent = {
-      playlist: await Promise.all(
-        (await trackService.getPlaylist(room)).map(async (track: Track) => ({
-          name: (
-            await trackInformationService.getTrackInformation(
-              track.trackInformation,
-            )
-          ).name,
-        })),
-      ),
-    };
+    const playlist: PlaylistEvent = await trackService.getPlaylist(room);
     playlistEventService.emitEvent(playlist, room);
   }
 

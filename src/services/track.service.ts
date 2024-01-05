@@ -1,9 +1,11 @@
 import TrackModel, { Track } from '../models/track.model';
 import Repository from '../repositories/mongo.repository';
-import { ItemsPage } from '../utils/types';
+import { ItemsPage, PlaylistEvent } from '../utils/types';
 import playlistEventEmitter from '../emitters/playlist.event.emitter';
 import trackUnitEventEmitter from '../emitters/track.event.emitter';
 import { TrackState } from '../constants/constant';
+import trackInformationService from './trackInformation.service';
+import { TrackInformation } from '../models/trackInformation.model';
 
 class TrackService {
   repository: Repository<Track>;
@@ -49,7 +51,7 @@ class TrackService {
     await playlistEventEmitter.emitPlaylist(track.group);
   }
 
-  async getPlaylist(group: string): Promise<Track[]> {
+  async getPlaylist(group: string): Promise<PlaylistEvent> {
     const { items } = await this.getTracks(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       new Map<string, any>([
@@ -65,7 +67,24 @@ class TrackService {
       ]),
     );
 
-    return items;
+    const trackInfoItems: TrackInformation[] = await Promise.all(
+      items.map((track: Track) =>
+        trackInformationService.getTrackInformation(track.trackInformation),
+      ),
+    );
+
+    const tracks: PlaylistEvent = {
+      playlist: trackInfoItems.map(
+        (trackInfo: TrackInformation, index: number) => {
+          return {
+            id: items[index].id,
+            name: trackInfo.name,
+          };
+        },
+      ),
+    };
+
+    return tracks;
   }
 }
 

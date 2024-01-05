@@ -15,6 +15,7 @@ import {
 import HttpException from '../exceptions/http.exception';
 
 import { EventRequest } from './requestTypes/event.request.types';
+import trackInformationService from '../services/trackInformation.service';
 
 class EventController {
   async subscribeToPlaylist(
@@ -35,13 +36,7 @@ class EventController {
 
     try {
       playlistEventEmitter.addObservable(groupId);
-      const playlist: PlaylistEvent = {
-        playlist: (await trackService.getPlaylist(groupId)).map(
-          (track: Track) => ({
-            name: track.name,
-          }),
-        ),
-      };
+      const playlist: PlaylistEvent = await trackService.getPlaylist(groupId);
       res.write(
         playlistEventService.serializeEvent(EventType.PLAYLIST, playlist),
       );
@@ -90,15 +85,19 @@ class EventController {
       const { currentTrack } = await groupService.getGroup(groupId);
       if (currentTrack) {
         const currentUnit: Track = await trackService.getTrack(currentTrack);
+        const currentUnitInfo =
+          await trackInformationService.getTrackInformation(
+            currentUnit.trackInformation,
+          );
 
         res.write(
           trackEventService.serializeEvent(EventType.CURRENT_TRACK, {
             id: currentUnit.id,
-            name: currentUnit.name,
+            name: currentUnitInfo.name,
             timeOffset: Math.round(
               (Date.now() - Number(currentUnit.startTime)) / 1000,
             ),
-            externalId: currentUnit.externalId,
+            externalId: currentUnitInfo.externalId,
           }),
         );
       }

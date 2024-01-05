@@ -14,6 +14,7 @@ export type TrackEvent = {
 
 export type PlaylistEvent = {
   playlist: {
+    id: string;
     name: string;
   }[];
 };

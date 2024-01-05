@@ -19,10 +19,10 @@ import {
   UpdateTrackInfoRequestType,
   DeleteTrackInfoRequestType,
 } from './requestTypes/track.request.types';
-import { TrackInformation } from 'models/trackInformation.model';
-import trackInformationService from 'services/trackInformation.service';
-import TrackInformationCreateSchemaValidator from 'models/validators/createValidators/trackInformation.create.validator';
-import TrackInformationUpdateSchemaValidator from 'models/validators/updateValidators/trackInformation.update.validator';
+import { TrackInformation } from '../models/trackInformation.model';
+import trackInformationService from '../services/trackInformation.service';
+import TrackInformationCreateSchemaValidator from '../models/validators/createValidators/trackInformation.create.validator';
+import TrackInformationUpdateSchemaValidator from '../models/validators/updateValidators/trackInformation.update.validator';
 
 class TrackController {
   async getTrack(

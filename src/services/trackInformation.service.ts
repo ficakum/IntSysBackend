@@ -2,7 +2,7 @@ import Repository from '../repositories/mongo.repository';
 import { ItemsPage } from '../utils/types';
 import TrackInformationModel, {
   TrackInformation,
-} from 'models/trackInformation.model';
+} from '../models/trackInformation.model';
 
 class TrackInformationService {
   repository: Repository<TrackInformation>;

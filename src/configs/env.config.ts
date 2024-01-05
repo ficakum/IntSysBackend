@@ -38,7 +38,7 @@ if (
 const config: IConfig = {
   MONGODB_CONNECTION: process.env.MONGODB_CONNECTION,
   MONGODB_NAME: process.env.MONGODB_NAME,
-  PORT: Number(process.env.PORT) || 3000,
+  PORT: Number(process.env.PORT) || 3001,
   MAX_MEMBERS_DEFAULT: Number(process.env.MAX_MEMBERS_DEFAULT),
   PLAYLIST_RATE_LIMIT: Number(process.env.PLAYLIST_RATE_LIMIT),
   cron: {

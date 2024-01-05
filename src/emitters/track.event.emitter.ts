@@ -4,8 +4,8 @@ import groupService from '../services/group.service';
 import { Track } from '../models/track.model';
 import { Group } from '../models/group.model';
 import { TrackState } from '../constants/constant';
-import { TrackInformation } from 'models/trackInformation.model';
-import trackInformationService from 'services/trackInformation.service';
+import { TrackInformation } from '../models/trackInformation.model';
+import trackInformationService from '../services/trackInformation.service';
 
 class TrackEventEmitter {
   async emitFirstTrack(track: Track): Promise<void> {
@@ -38,7 +38,8 @@ class TrackEventEmitter {
   }
 
   async emitNextTrack(group: string): Promise<void> {
-    let nextTrack: Track = (await trackService.getPlaylist(group))[0];
+    const id: string = (await trackService.getPlaylist(group)).playlist[0].id;
+    let nextTrack: Track = await trackService.getTrack(id);
     await groupService.updateGroup(group, {
       currentTrack: nextTrack ? nextTrack.id : null,
     });

@@ -8,7 +8,7 @@ import authenticationRouter from './authentication.router';
 
 const router: Router = Router();
 
-router.use('/rooms', roomRouter);
+router.use('/groups', roomRouter);
 router.use('/users', userRouter);
 router.use('/trackUnits', trackUnitsRouter);
 router.use('/subscribe', eventRouter);

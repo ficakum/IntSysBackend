@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { connect } from './databaseConnections/mongo.connection';
 import config from './configs/env.config';
@@ -12,6 +13,8 @@ const app: Express = express();
 
 async function start(): Promise<void> {
   await connect();
+
+  app.use(cors());
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

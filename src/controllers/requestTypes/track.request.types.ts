@@ -1,7 +1,7 @@
 import { Request } from 'express';
 
 import { Track } from '../../models/track.model';
-import { TrackInformation } from 'models/trackInformation.model';
+import { TrackInformation } from '../../models/trackInformation.model';
 
 type GetTrackRequestType = Request<{ id: string }, object, object, object>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
