@@ -19,6 +19,10 @@ passport.use(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   new JwtStrategy(options, async (payload: any, done: VerifiedCallback) => {
     try {
+      if (payload.exp < Date.now()) {
+        return done(null, false, { message: 'Access token expired' });
+      }
+
       const user: User = await userService.getUser(payload.id);
 
       return done(null, user);

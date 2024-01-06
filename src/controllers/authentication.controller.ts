@@ -1,4 +1,4 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 
 import Logger from '../utils/winston.logger';
 import { Tokens } from '../utils/types';
@@ -14,11 +14,16 @@ import {
   RefreshTokenRequestType,
   ResetPasswordRequestType,
 } from './requestTypes/auth.request.types';
+import { User } from '../models/user.model';
 
 class AuthenticationController {
   constructor() {
     this.signUp = this.signUp.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
+  }
+
+  async getLoggedInUser(req: Request, res: Response) {
+    res.status(200).json(req.user as User);
   }
 
   async signIn(
