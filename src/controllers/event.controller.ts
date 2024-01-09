@@ -97,6 +97,10 @@ class EventController {
             timeOffset: Math.round(
               (Date.now() - Number(currentUnit.startTime)) / 1000,
             ),
+            audio_link: currentUnitInfo.audio_link,
+            vocals_link: currentUnitInfo.vocals_link,
+            instrumental_link: currentUnitInfo.instrumental_link,
+            album_cover_link: currentUnitInfo.album_cover_link,
             externalId: currentUnitInfo.externalId,
           }),
         );

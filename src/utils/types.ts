@@ -10,6 +10,10 @@ export type TrackEvent = {
   name: string;
   timeOffset: number;
   externalId: string;
+  audio_link: string;
+  vocals_link: string;
+  instrumental_link: string;
+  album_cover_link: string;
 };
 
 export type PlaylistEvent = {

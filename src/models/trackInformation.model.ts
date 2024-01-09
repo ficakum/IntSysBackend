@@ -27,6 +27,11 @@ export type TrackInformation = {
   liveness: number;
   valence: number;
   tempo: number;
+  cluster: number;
+  audio_link: string;
+  vocals_link: string;
+  instrumental_link: string;
+  album_cover_link: string;
 } & Document;
 
 const TrackInformationSchema: Schema<TrackInformation> =
@@ -56,6 +61,11 @@ const TrackInformationSchema: Schema<TrackInformation> =
       liveness: { type: Number },
       valence: { type: Number },
       tempo: { type: Number },
+      cluster: { type: Number },
+      audio_link: { type: String },
+      vocals_link: { type: String },
+      instrumental_link: { type: String },
+      album_cover_link: { type: String },
     },
     {
       timestamps: true,
