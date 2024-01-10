@@ -85,6 +85,7 @@ class CronService {
           trackEventService.emitEvent(
             {
               id: currentTrack.id,
+              infoId: currentTrackInfo.id,
               name: currentTrackInfo.name,
               timeOffset: timeOffset,
               audio_link: currentTrackInfo.audio_link,

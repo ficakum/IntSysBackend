@@ -93,6 +93,7 @@ class EventController {
         res.write(
           trackEventService.serializeEvent(EventType.CURRENT_TRACK, {
             id: currentUnit.id,
+            infoId: currentUnitInfo.id,
             name: currentUnitInfo.name,
             timeOffset: Math.round(
               (Date.now() - Number(currentUnit.startTime)) / 1000,

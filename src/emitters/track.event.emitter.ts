@@ -28,6 +28,7 @@ class TrackEventEmitter {
       trackEventService.emitEvent(
         {
           id: track.id,
+          infoId: trackInfo.id,
           name: trackInfo.name,
           timeOffset: Math.round((Date.now() - Number(track.startTime)) / 1000),
           audio_link: trackInfo.audio_link,
@@ -62,6 +63,7 @@ class TrackEventEmitter {
     trackEventService.emitEvent(
       {
         id: nextTrack.id,
+        infoId: nextTrackInfo.id,
         name: nextTrackInfo.name,
         timeOffset: Math.round(
           (Date.now() - Number(nextTrack.startTime)) / 1000,

@@ -7,6 +7,7 @@ export type ItemsPage<T> = {
 
 export type TrackEvent = {
   id: string;
+  infoId: string;
   name: string;
   timeOffset: number;
   externalId: string;
