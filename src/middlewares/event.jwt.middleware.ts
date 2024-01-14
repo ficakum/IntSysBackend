@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { NextFunction, Response } from 'express';
 import { EventAuthenticationMiddlewareRequestType } from './requestTypes/middleware.request.types';
-import UnauthorizedException from 'exceptions/unauthorized.exception';
-import userService from 'services/user.service';
+import UnauthorizedException from '../exceptions/unauthorized.exception';
+import userService from '../services/user.service';
 import { User } from '../models/user.model';
 
 const eventAuthMiddleware = async (
