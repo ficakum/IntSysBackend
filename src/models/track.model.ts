@@ -1,6 +1,6 @@
 import mongoose, { Document, Model, Schema, Types } from 'mongoose';
 
-import { ModelConstants } from '../constants/constant';
+import { ModelConstants, TrackState } from '../constants/constant';
 import { Group } from './group.model';
 import { TrackInformation } from './trackInformation.model';
 
@@ -18,7 +18,7 @@ const TrackSchema: Schema<Track> = new Schema<Track>(
       ref: ModelConstants.TRACK_INFORMATION,
     },
     startTime: { type: Date },
-    state: { type: String },
+    state: { type: String, default: TrackState.SCHEDULED },
     group: { type: Types.ObjectId, ref: ModelConstants.GROUP },
   },
   {
