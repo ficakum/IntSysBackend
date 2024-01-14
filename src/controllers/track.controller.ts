@@ -86,6 +86,28 @@ class TrackController {
     }
   }
 
+  async getTrackInformations(
+    req: GetTracksRequestType,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
+    const { query } = req;
+
+    try {
+      const tracksInfo =
+        await trackInformationService.getTrackInformations(query);
+
+      res.status(200).json(tracksInfo);
+    } catch (error) {
+      Logger.error(
+        `Error in ${__filename} - getTrackInformations method: ${
+          (error as HttpException).message
+        }`,
+      );
+      next(error);
+    }
+  }
+
   async createTrack(
     req: CreateTrackRequestType,
     res: Response,
