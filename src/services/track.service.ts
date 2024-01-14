@@ -6,6 +6,8 @@ import trackUnitEventEmitter from '../emitters/track.event.emitter';
 import { TrackState } from '../constants/constant';
 import trackInformationService from './trackInformation.service';
 import { TrackInformation } from '../models/trackInformation.model';
+import { User } from '../models/user.model';
+import userService from './user.service';
 
 class TrackService {
   repository: Repository<Track>;
@@ -30,8 +32,12 @@ class TrackService {
     return this.repository.getItems(query);
   }
 
-  async createTrack(track: Track): Promise<Track> {
+  async createTrack(track: Track, user: User): Promise<Track> {
     const createdTrack: Track = await this.repository.createItem(track);
+    !user.songList.includes(track.trackInformation) &&
+      user.songList.push(track.trackInformation);
+
+    await userService.updateUser(user.id, user);
 
     await playlistEventEmitter.emitPlaylist(track.group);
     await trackUnitEventEmitter.emitFirstTrack(createdTrack);

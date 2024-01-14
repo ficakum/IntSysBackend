@@ -23,6 +23,7 @@ import { TrackInformation } from '../models/trackInformation.model';
 import trackInformationService from '../services/trackInformation.service';
 import TrackInformationCreateSchemaValidator from '../models/validators/createValidators/trackInformation.create.validator';
 import TrackInformationUpdateSchemaValidator from '../models/validators/updateValidators/trackInformation.update.validator';
+import { User } from '../models/user.model';
 
 class TrackController {
   async getTrack(
@@ -90,7 +91,7 @@ class TrackController {
     res: Response,
     next: NextFunction,
   ): Promise<void> {
-    const { body } = req;
+    const { body, user } = req;
 
     try {
       const { value, error } = TrackCreateSchemaValidator.validate(body);
@@ -99,7 +100,10 @@ class TrackController {
         throw new ValidationException(error.message);
       }
 
-      const createdTrack: Track = await TrackService.createTrack(value);
+      const createdTrack: Track = await TrackService.createTrack(
+        value,
+        user as User,
+      );
       Logger.info(`track with id: ${createdTrack.id} created`);
 
       res.status(200).json(createdTrack);

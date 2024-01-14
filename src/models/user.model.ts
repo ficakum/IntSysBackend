@@ -10,12 +10,14 @@ import { ModelConstants } from '../constants/constant';
 import { hashPassword } from '../utils/helper.methods';
 
 import { Group } from './group.model';
+import { TrackInformation } from './trackInformation.model';
 
 export type User = {
   userName: string;
   email: string;
   password: string;
   group: Group['_id'];
+  songList: TrackInformation['_id'][];
 } & Document;
 
 const UserSchema: Schema<User> = new Schema<User>(
@@ -24,6 +26,7 @@ const UserSchema: Schema<User> = new Schema<User>(
     email: { type: String, required: true, unique: true },
     password: { type: String, select: false },
     group: { type: Types.ObjectId, ref: ModelConstants.GROUP },
+    songList: { type: [Types.ObjectId], ref: ModelConstants.TRACK_INFORMATION },
   },
   {
     timestamps: true,
