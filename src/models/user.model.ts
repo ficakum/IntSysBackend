@@ -26,7 +26,11 @@ const UserSchema: Schema<User> = new Schema<User>(
     email: { type: String, required: true, unique: true },
     password: { type: String, select: false },
     group: { type: Types.ObjectId, ref: ModelConstants.GROUP },
-    songList: { type: [Types.ObjectId], ref: ModelConstants.TRACK_INFORMATION },
+    songList: {
+      type: [Types.ObjectId],
+      ref: ModelConstants.TRACK_INFORMATION,
+      default: [],
+    },
   },
   {
     timestamps: true,
