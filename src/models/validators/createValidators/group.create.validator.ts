@@ -58,6 +58,18 @@ const GroupCreateSchemaValidator: Joi.ObjectSchema<Group> = Joi.object<Group>({
         'membersNum',
       ),
     ),
+  cluster: Joi.number()
+    .integer()
+    .messages(
+      messagesConstructor(
+        ValidatorTypes.NUMBER,
+        {
+          [ValidatorKeys.BASE]: `${ValidatorMessages.BASE} ${ValidatorTypes.NUMBER}`,
+          [ValidatorKeys.INTEGER]: ValidatorMessages.INTEGER,
+        },
+        'cluster',
+      ),
+    ),
 });
 
 export default GroupCreateSchemaValidator;

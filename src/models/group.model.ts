@@ -10,6 +10,7 @@ export type Group = {
   currentTrack: Track['_id'];
   maxMembers: number;
   membersNum: number;
+  cluster: number;
 } & Document;
 
 const GroupSchema: Schema<Group> = new Schema<Group>(
@@ -18,6 +19,7 @@ const GroupSchema: Schema<Group> = new Schema<Group>(
     currentTrack: { type: Types.ObjectId, ref: ModelConstants.TRACK },
     maxMembers: { type: Number, default: config.MAX_MEMBERS_DEFAULT },
     membersNum: { type: Number, default: 0 },
+    cluster: { type: Number, default: -1 },
   },
   {
     timestamps: true,
