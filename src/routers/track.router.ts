@@ -6,13 +6,13 @@ import authenticationMiddleware from '../middlewares/jwt.middleware';
 
 const trackRouter: Router = Router();
 
-trackRouter.get('/:id', authenticationMiddleware, trackController.getTrack);
 trackRouter.get(
   '/trackInfo',
   authenticationMiddleware,
   queryMiddleware,
   trackController.getTrackInformations,
 );
+trackRouter.get('/:id', authenticationMiddleware, trackController.getTrack);
 trackRouter.get(
   '/',
   authenticationMiddleware,

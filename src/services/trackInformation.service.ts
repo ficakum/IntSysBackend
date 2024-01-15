@@ -26,7 +26,8 @@ class TrackInformationService {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     query: Map<string, any>,
   ): Promise<ItemsPage<TrackInformation>> {
-    return this.repository.getItems(query);
+    const itemsPage = await this.repository.getItems(query);
+    return itemsPage;
   }
 
   async createTrackInformation(

@@ -1,8 +1,8 @@
 export enum ModelConstants {
-  USER = 'User',
-  TRACK = 'Track',
-  GROUP = 'Group',
-  TRACK_INFORMATION = 'Track_Information',
+  USER = 'users',
+  TRACK = 'tracks',
+  GROUP = 'groups',
+  TRACK_INFORMATION = 'track_informations',
 }
 
 export const WinstonLevels = {
