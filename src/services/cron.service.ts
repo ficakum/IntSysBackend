@@ -19,7 +19,7 @@ class CronService {
     return cron.schedule(
       `${config.cron.CRON_TRACK}`,
       async (): Promise<void> => {
-        await this.paralelizeTrackUpdate();
+        this.paralelizeTrackUpdate();
       },
     );
   }
@@ -27,7 +27,6 @@ class CronService {
   async paralelizeTrackUpdate(): Promise<void> {
     try {
       let groupCount: number = await groupService.getGroupCount({
-        active: true,
         currentTrack: { $ne: null },
       });
 
