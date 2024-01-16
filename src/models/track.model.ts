@@ -6,7 +6,7 @@ import { TrackInformation } from './trackInformation.model';
 
 export type Track = {
   trackInformation: TrackInformation['_id'];
-  startTime: Date;
+  startTime: number;
   group: Group['_id'];
   state: string;
 } & Document;
@@ -17,7 +17,7 @@ const TrackSchema: Schema<Track> = new Schema<Track>(
       type: Types.ObjectId,
       ref: ModelConstants.TRACK_INFORMATION,
     },
-    startTime: { type: Date },
+    startTime: { type: Number },
     state: { type: String, default: TrackState.SCHEDULED },
     group: { type: Types.ObjectId, ref: ModelConstants.GROUP },
   },

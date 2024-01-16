@@ -17,7 +17,7 @@ class TrackEventEmitter {
       });
 
       track = await trackService.updateTrack(track.id, {
-        startTime: new Date(),
+        startTime: Date.now(),
         state: TrackState.PLAYING,
       });
       const trackInfo: TrackInformation =
@@ -53,7 +53,7 @@ class TrackEventEmitter {
     }
 
     nextTrack = await trackService.updateTrack(nextTrack.id, {
-      startTime: new Date(),
+      startTime: Date.now(),
       state: TrackState.PLAYING,
     });
     const nextTrackInfo = await trackInformationService.getTrackInformation(
