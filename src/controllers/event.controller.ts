@@ -95,9 +95,7 @@ class EventController {
             id: currentUnit.id,
             infoId: currentUnitInfo.id,
             name: currentUnitInfo.name,
-            timeOffset: Math.round(
-              (Date.now() - Number(currentUnit.startTime)) / 1000,
-            ),
+            timeOffset: Math.round(Date.now() - currentUnit.startTime),
             audio_link: currentUnitInfo.audio_link,
             vocals_link: currentUnitInfo.vocals_link,
             instrumental_link: currentUnitInfo.instrumental_link,

@@ -65,7 +65,7 @@ class CronService {
         );
         const group: string = item.id;
         const timeOffset: number = Math.round(
-          (Date.now() - Number(currentTrack.startTime)) / 1000,
+          Date.now() - Number(currentTrack.startTime),
         );
         const currentTrackInfo: TrackInformation =
           await trackInformationService.getTrackInformation(

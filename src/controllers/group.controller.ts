@@ -70,7 +70,7 @@ class GroupController {
     res: Response,
     next: NextFunction,
   ): Promise<void> {
-    const { body } = req;
+    const { body, user } = req;
 
     try {
       const group: Partial<Group> = {
@@ -83,7 +83,10 @@ class GroupController {
         throw new ValidationException(error.message);
       }
 
-      const createdGroup: Group = await groupService.createGroup(value);
+      const createdGroup: Group = await groupService.createGroup(
+        value,
+        user as User,
+      );
       Logger.info(`group with id: ${createdGroup.id} created`);
 
       res.status(200).json(createdGroup);

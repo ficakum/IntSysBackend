@@ -43,7 +43,11 @@ class TrackEventEmitter {
   }
 
   async emitNextTrack(group: string): Promise<void> {
-    const id: string = (await trackService.getPlaylist(group)).playlist[0].id;
+    const trackUnit = (await trackService.getPlaylist(group)).playlist[0];
+    if (!trackUnit) {
+      return;
+    }
+    const id: string = trackUnit.id;
     let nextTrack: Track = await trackService.getTrack(id);
     await groupService.updateGroup(group, {
       currentTrack: nextTrack ? nextTrack.id : null,
@@ -65,9 +69,7 @@ class TrackEventEmitter {
         id: nextTrack.id,
         infoId: nextTrackInfo.id,
         name: nextTrackInfo.name,
-        timeOffset: Math.round(
-          (Date.now() - Number(nextTrack.startTime)) / 1000,
-        ),
+        timeOffset: Math.round(Date.now() - nextTrack.startTime),
         audio_link: nextTrackInfo.audio_link,
         vocals_link: nextTrackInfo.vocals_link,
         instrumental_link: nextTrackInfo.instrumental_link,

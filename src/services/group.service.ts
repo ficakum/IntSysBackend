@@ -31,8 +31,10 @@ class GroupService {
     return this.repository.getItemCount(searchQuery);
   }
 
-  async createGroup(group: Group): Promise<Group> {
+  async createGroup(group: Group, user: User): Promise<Group> {
     const createdGroup: Group = await this.repository.createItem(group);
+
+    await userService.updateUser(user._id, { group: createdGroup.id });
 
     playlistEventEmitter.addObservable(createdGroup.id);
     trackEventService.addSubject(createdGroup.id);
