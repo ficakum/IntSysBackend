@@ -32,6 +32,7 @@ export type TrackInformation = {
   vocals_link: string;
   instrumental_link: string;
   album_cover_link: string;
+  has_lyrics: boolean;
 } & Document;
 
 const TrackInformationSchema: Schema<TrackInformation> =
@@ -66,6 +67,7 @@ const TrackInformationSchema: Schema<TrackInformation> =
       vocals_link: { type: String },
       instrumental_link: { type: String },
       album_cover_link: { type: String },
+      has_lyrics: { type: Boolean, default: false },
     },
     {
       timestamps: true,

@@ -26,10 +26,6 @@ class TrackInformationService {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     query: Map<string, any>,
   ): Promise<ItemsPage<TrackInformation>> {
-    query.set('searchQuery', {
-      ...query.get('searchQuery'),
-      audio_link: { $ne: '' },
-    });
     const itemsPage = await this.repository.getItems(query);
     return itemsPage;
   }

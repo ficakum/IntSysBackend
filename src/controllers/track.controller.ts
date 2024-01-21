@@ -94,6 +94,11 @@ class TrackController {
     const { query } = req;
 
     try {
+      query.set('searchQuery', {
+        ...query.get('searchQuery'),
+        audio_link: { $ne: '' },
+        has_lyrics: true,
+      });
       const tracksInfo =
         await trackInformationService.getTrackInformations(query);
 
