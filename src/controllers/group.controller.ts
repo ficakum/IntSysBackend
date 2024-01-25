@@ -75,7 +75,7 @@ class GroupController {
     try {
       const group: Partial<Group> = {
         ...body,
-        membersNum: 0,
+        membersNum: 1,
       };
       const { value, error } = GroupCreateSchemaValidator.validate(group);
 
