@@ -9,6 +9,8 @@ import playlistEventEmitter from '../emitters/playlist.event.emitter';
 import userService from './user.service';
 import { trackEventService } from './event.service';
 import { User } from '../models/user.model';
+import Logger from '../utils/winston.logger';
+import HttpException from '../exceptions/http.exception';
 
 class GroupService {
   repository: Repository<Group>;
@@ -50,8 +52,12 @@ class GroupService {
     await this.removeUsersFromGroup(id);
     await this.repository.deleteItem(id);
 
-    playlistEventEmitter.removeObservable(id);
-    trackEventService.removeSubject(id);
+    try {
+      playlistEventEmitter.removeObservable(id);
+      trackEventService.removeSubject(id);
+    } catch (err: unknown) {
+      Logger.error((err as HttpException).message);
+    }
   }
 
   async joinGroup(groupId: string, userId: string): Promise<void> {
